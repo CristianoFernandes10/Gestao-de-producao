@@ -4,7 +4,7 @@ import { pool } from './database.js'
 export const initializeDB = async () =>{
     try{
 
-        // await pool.query('DROP TABLE IF EXISTS products_stock')
+        //  await pool.query('DROP TABLE IF EXISTS users')
         // console.log('Tabela products apagada com sucesso')
 
         
@@ -18,7 +18,7 @@ export const initializeDB = async () =>{
         validity INT NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP)`)
 
-        console.log('Tabela products criada com sucesso')
+        
 
 
         await pool.query(`
@@ -26,7 +26,7 @@ export const initializeDB = async () =>{
         id INT PRIMARY KEY AUTO_INCREMENT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP)`)
 
-        console.log('Tabela machines criada com sucesso')
+       
 
         await pool.query(`
         CREATE TABLE IF NOT EXISTS production_order(
@@ -41,7 +41,7 @@ export const initializeDB = async () =>{
         FOREIGN KEY (sku) REFERENCES products (sku),
         FOREIGN KEY (machine_id) REFERENCES machines (id))`)
 
-        console.log('Tabela production_order criada com sucesso')
+        
 
 
 
@@ -55,9 +55,18 @@ export const initializeDB = async () =>{
         FOREIGN KEY (sku) REFERENCES products (sku)
         )`)
 
-        console.log('Tabela products_stock criada com sucesso')
+        
 
-   
+
+        await pool.query(`
+        CREATE TABLE IF NOT EXISTS users(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        role ENUM('LAB', 'PRD', 'EXP', 'STO', 'SUPER') NOT NULL,
+        user VARCHAR(20) DEFAULT NULL,
+        password VARCHAR(60) NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP)`)
+
+        
         
         
         

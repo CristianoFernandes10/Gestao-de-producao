@@ -69,7 +69,7 @@ export const insertStock = async (data) =>{
         const [result] = await connection.query(`
         INSERT INTO products_stock (sku, batch, quantity) VALUES(?,?,?)`, [sku, batch, quantity])
 
-        console.log(result)
+       
 
 
         return {
