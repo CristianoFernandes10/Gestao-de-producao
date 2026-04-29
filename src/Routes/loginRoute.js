@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router()
-import { loginController } from '../Controllers/Product/loginController.js'
+import { loginController } from '../Controllers/loginController.js'
 import { asyncHandler } from '../Utils/asyncHandler.js'
 router.post('/', asyncHandler(loginController))
 

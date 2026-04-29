@@ -1,5 +1,5 @@
-import { ValidationError } from "../../Errors/ValidationError.js";
-import { login } from '../../Services/loginService.js'
+import { ValidationError } from "../Errors/ValidationError.js";
+import { login } from '../Services/loginService.js'
 
 export const loginController = async (req, res) =>{
     const {user, password} = req.body

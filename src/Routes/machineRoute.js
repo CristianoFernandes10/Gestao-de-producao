@@ -2,9 +2,12 @@ import express from 'express'
 const router = express.Router()
 import { createMachines, getAllMachines } from '../Controllers/machineController.js'
 import { asyncHandler } from '../Utils/asyncHandler.js'
-router.post('/', asyncHandler(createMachines))
+import { auth } from '../Middlewares/auth.js'
 
-router.get('/', asyncHandler(getAllMachines))
+import { authRole } from '../Middlewares/authRole.js'
+router.post('/', auth, authRole(['SUPER']), asyncHandler(createMachines))
+
+router.get('/', auth, asyncHandler(getAllMachines))
 
 
 export default router
